@@ -18,15 +18,26 @@ Returns:
 """
 
 def two_sum(nums: list[int], target: int) -> list[int]:
-    """
-    Two Sum.
+    dict_indices = {}
+    for i in range(len(nums)):
+        dict_indices[nums[i]] = i
+    nums.sort()
+    start=0
+    end=len(nums)-1
+    while start<end:
+        if (nums[start]+nums[end])>target:
+            end-=1
+        elif (nums[start]+nums[end])<target:
+            start+=1
+        else:
+            return [dict_indices[nums[start]],dict_indices[nums[end]]]
+    return None
 
-    Args:
-        nums (list[int]): List of integers (0-indexed)
-        target (int): Target sum
-
-    Returns:
-        list[int]: Indices of the two numbers
-    """
-    # TODO: implement
-    pass
+# target=int(input("enter the target number"))
+# nums=[]
+# n=int(input("enter the number of numbers"))
+# for i in range(n):
+#     a=int(input("enter the number"))
+#     nums.append(a)
+# q=two_sum(nums,target)
+# print(q)
