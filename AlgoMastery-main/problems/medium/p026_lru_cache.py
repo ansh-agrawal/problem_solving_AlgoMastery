@@ -36,13 +36,26 @@ class LRUCache:
         put(key: int, value: int) -> None
     """
     def __init__(self, capacity: int):
-        # TODO: implement
-        pass
+            self.d={}
+            self.capacity=capacity
 
     def get(self, key: int) -> int:
-        # TODO: implement
-        pass
+        if key in self.d:
+            vall=self.d[key]
+            self.d.pop(key)
+            self.d[key]=vall
+            return self.d[key]
+        else:
+            return -1
 
     def put(self, key: int, value: int) -> None:
-        # TODO: implement
-        pass
+        if key in self.d:
+          self.d.pop(key)  
+          self.d[key]=value
+        
+        elif len(self.d) >= self.capacity:
+            first_key=next(iter(self.d))
+            self.d.pop(first_key)
+            self.d[key]=value
+        else:
+            self.d[key]=value
