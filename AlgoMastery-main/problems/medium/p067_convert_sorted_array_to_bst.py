@@ -17,17 +17,16 @@ Args:
 Returns:
     list[Optional[int]]: Height-balanced BST as a list (0-indexed, level order, None for missing nodes)
 """
-
+# need to make TreeNode class
+def sorted_array_to_bst(self,lst,start,end):
+        if start>end:
+            return None
+        mid = start+(end-start)//2
+        node=TreeNode(lst[mid])
+        node.left=self.sorted_array_to_bst(lst,start,mid-1)
+        node.right=self.sorted_array_to_bst(lst,mid+1,end)
+        return node
 def convert_sorted_array_to_bst(nums: list[int]) -> list[int]:
-    """
-    Convert Sorted Array to BST.
+    return self.sorted_array_to_bst(nums,0,len(nums)-1)
 
-    Args:
-        nums (list[int]): Sorted array (0-indexed)
-
-    Returns:
-        list[Optional[int]]: Height-balanced BST as a list (0-indexed, level order, None for missing nodes)
-    """
-    # TODO: implement
-    pass
 
