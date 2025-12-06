@@ -18,17 +18,22 @@ Args:
 Returns:
     int: Total sum of all root-to-leaf numbers
 """
+def list_of_numbers_root_leaf(root,lst,temp_str):
+        if root is None:
+            return None
+        temp_str+=str(root.val)
+        if root.left is None and root.right is None:
+            lst.append(temp_str)
+        list_of_numbers_root_leaf(root.left,lst,temp_str)
+        list_of_numbers_root_leaf(root.right,lst,temp_str)
 
 def sum_root_to_leaf_numbers(root: list[int]) -> int:
-    """
-    Sum Root to Leaf Numbers.
+        lst=[]
+        temp_str=""
+        summ=0
+        list_of_numbers_root_leaf(root,lst,temp_str)
+        for i  in range(len(lst)):
+            summ+=int(lst[i])
+        return summ
 
-    Args:
-        root (list[Optional[int]]): Binary tree represented as a list (0-indexed, level order, None for missing nodes)
-
-    Returns:
-        int: Total sum of all root-to-leaf numbers
-    """
-    # TODO: implement
-    pass
 
