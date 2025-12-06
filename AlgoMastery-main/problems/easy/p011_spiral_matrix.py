@@ -13,15 +13,21 @@ Returns:
     list[int]: Elements in spiral order
 """
 
-def spiral_matrix(matrix: list[list[int]]) -> list[int]:
-    """
-    Spiral Matrix.
-
-    Args:
-        matrix (list[list[int]]): 2D matrix (0-indexed)
-
-    Returns:
-        list[int]: Elements in spiral order
-    """
-    # TODO: implement
-    pass
+def spiral_matrix(nums: list[list[int]]) -> list[int]:
+    left,top = 0,0
+    right,bottom =len(nums[0])-1, len(nums)-1
+    temp=[]
+    while left<=right and top<=bottom:
+        for i  in range(left,right+1):
+            temp.append(nums[top][i])
+        top+=1
+        for i in range(top,bottom+1):
+            temp.append(nums[i][right])
+        right-=1
+        for i in range(right,left-1,-1):
+            temp.append(nums[bottom][i])
+        bottom-=1
+        for i in range(bottom,top-1,-1):
+            temp.append(nums[i][left])
+        left+=1
+    return temp
