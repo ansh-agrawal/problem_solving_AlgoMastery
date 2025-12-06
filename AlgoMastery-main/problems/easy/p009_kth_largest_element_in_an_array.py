@@ -16,15 +16,5 @@ Returns:
 """
 
 def kth_largest_element_in_an_array(nums: list[int], k: int) -> int:
-    """
-    Kth Largest Element in an Array.
-
-    Args:
-        nums (list[int]): List of integers (0-indexed)
-        k (int): The kth position (1-indexed)
-
-    Returns:
-        int: The kth largest element
-    """
-    # TODO: implement
-    pass
+    nums.sort(reverse=True)
+    return nums[k-1]
