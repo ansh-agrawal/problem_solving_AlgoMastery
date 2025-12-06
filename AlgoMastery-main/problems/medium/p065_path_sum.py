@@ -18,18 +18,18 @@ Args:
 Returns:
     bool: True if such a path exists, False otherwise
 """
+def targetPathSum(root,target,summ):
+        if root is None:
+            return False
+        summ+=root.val
+        if root.left is None and root.right is None:
+            if summ==target:
+                return True
+            else:
+                return False
+        return targetPathSum(root.left,target,summ) or targetPathSum(root.right,target,summ)
 
 def path_sum(root: list[int], target_sum: int) -> bool:
-    """
-    Path Sum.
-
-    Args:
-        root (list[Optional[int]]): Binary tree represented as a list (0-indexed, level order, None for missing nodes)
-        target_sum (int): Target sum value
-
-    Returns:
-        bool: True if such a path exists, False otherwise
-    """
-    # TODO: implement
-    pass
+        summ=0
+        return targetPathSum(root,target_sum,summ)
 
