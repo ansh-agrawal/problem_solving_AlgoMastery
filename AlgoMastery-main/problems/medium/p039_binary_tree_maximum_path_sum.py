@@ -13,16 +13,47 @@ Args:
 Returns:
     int: Maximum path sum
 """
+class Treenode:
 
-def binary_tree_maximum_path_sum(root: list[int]) -> int:
-    """
-    Binary Tree Maximum Path Sum.
+    def __init__(self,data_val):
+        self.val=data_val
+        self.left=None
+        self.right=None
 
-    Args:
-        root (list[Optional[int]]): Binary tree represented as a list (0-indexed, level order, None for missing nodes)
 
-    Returns:
-        int: Maximum path sum
-    """
-    # TODO: implement
-    pass
+def buildTree(lst):
+        if lst and lst[0]:
+            root=Treenode(lst[0])
+        q=[]
+        q.append(root)
+        i=1
+        while q and i<len(lst):
+            node=q.pop(0)
+            if i<len(lst) and lst[i] is not None:
+                node.left=Treenode(lst[i])
+                q.append(node.left)
+                i+=1
+            if i<len(lst) and lst[i] is not None:
+                node.right=Treenode(lst[i])
+                q.append(node.right)
+                i+=1
+        return root
+        
+def binary_tree_maximum_path_sum(node_list: list[int]) -> int:
+
+        root = buildTree(node_list)
+        maxx=[-10**4]
+
+        max_sum=maxSumPath(root,maxx)
+        return maxx[0]
+
+def maxSumPath(node,maxx):
+        if node==None:
+            return 0
+        leftsum=max(0,maxSumPath(node.left,maxx))
+        rightsum=max(0,maxSumPath(node.right,maxx))
+        maxx[0]=max(maxx[0],node.val+leftsum+rightsum)
+        return node.val+max(leftsum,rightsum)
+
+
+
