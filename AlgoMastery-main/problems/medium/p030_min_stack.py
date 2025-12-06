@@ -22,14 +22,38 @@ Example:
 from typing import Any
 
 def min_stack(args: Any) -> Any:
-    """
-    Min Stack placeholder.
+    def __init__(self):
+        self.st=[]
+        self.min_val=2**31
+        self.st1=[]
 
-    Args:
-        args (Any): Input operations and values (list of operations or similar structure)
+        
 
-    Returns:
-        Any: Outputs corresponding to top/get_min operations
-    """
-    # TODO: implement
-    pass
+    def push(self, val: int) -> None:
+        if val <= self.min_val:
+            self.min_val=val
+            self.st1.append(val)
+        self.st.append(val)
+        
+
+    def pop(self) -> None:
+        if len(self.st1) > 0 and self.st[-1]==self.st1[-1]:
+            self.st1.pop()
+            if self.st1:
+                self.min_val=self.st1[-1]
+            else:
+                self.min_val=2**31
+
+        if len(self.st) > 0:
+            self.st.pop()
+            
+
+    def top(self) -> int:
+        if len(self.st) > 0:
+            return self.st[-1]
+
+        
+
+    def getMin(self) -> int:
+        if len(self.st1) > 0:
+            return self.st1[-1]
