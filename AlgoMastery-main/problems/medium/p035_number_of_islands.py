@@ -20,15 +20,32 @@ Example:
 
 from typing import Any, List
 
-def number_of_islands(grid: List[List[str]]) -> int:
-    """
-    Count the number of islands in a 2D grid.
+def isvalid(self,i,j,n,m,grid):
+        if (i>=0 and i<n) and (j>=0 and j<m) and grid[i][j]=='1' :
+            return True
+        return False
 
-    Args:
-        grid (List[List[str]]): 2D grid of '1's (land) and '0's (water)
+def dfs(self,i,j,n,m,vis,grid):
+        vis[i][j]=1
+        if self.isvalid(i+1,j,n,m,grid) and vis[i+1][j]==0:
+            self.dfs(i+1,j,n,m,vis,grid)
+        if self.isvalid(i-1,j,n,m,grid) and vis[i-1][j]==0:
+            self.dfs(i-1,j,n,m,vis,grid)
+        if self.isvalid(i,j-1,n,m,grid) and vis[i][j-1]==0:
+            self.dfs(i,j-1,n,m,vis,grid)
+        if self.isvalid(i,j+1,n,m,grid) and vis[i][j+1]==0:
+            self.dfs(i,j+1,n,m,vis,grid)
+        
 
-    Returns:
-        int: Number of islands
-    """
-    # TODO: implement
-    pass
+def numIslands(self, grid: List[List[str]]) -> int:
+
+        count=0
+        n=len(grid)
+        m=len(grid[0])
+        vis=[[0 for _ in range(len(grid[0]))] for i in range(len(grid))]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]=='1' and vis[i][j]==0:
+                    count+=1
+                    self.dfs(i,j,n,m,vis,grid)
+        return count
