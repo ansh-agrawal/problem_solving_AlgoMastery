@@ -15,14 +15,19 @@ Returns:
 """
 
 def find_peak_element(nums: list[int]) -> int:
-    """
-    Find Peak Element.
-
-    Args:
-        nums (list[int]): List of integers (0-indexed)
-
-    Returns:
-        int: Index of a peak element
-    """
-    # TODO: implement
-    pass
+    if len(nums)<=2:
+        return max(nums)
+    temp=[]
+    for i in range(1,len(nums)-1):
+        temp_list=[]
+        if nums[i]>nums[i-1] and nums[i]>nums[i+1]:
+            temp_list.append(nums[i])
+            temp_list.append(i)
+            temp.append(temp_list)
+    max_ele=-1
+    max_ele_index=-1
+    for i in range(len(temp)):
+        if temp[i][0]>max_ele:
+            max_ele=temp[i][0]
+            max_ele_index=temp[i][1]
+    return max_ele_index
