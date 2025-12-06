@@ -15,14 +15,10 @@ Returns:
 """
 
 def container_with_most_water(height: list[int]) -> int:
-    """
-    Container With Most Water.
+    area=1
+    for i  in range(len(height)-1):
+        for j in range(i+1,len(height)):
+            min_val=min(height[i],height[j])
+            area=max(area,min_val*(j-i))
+    return area
 
-    Args:
-        height (list[int]): Heights of lines (0-indexed)
-
-    Returns:
-        int: Maximum area of water container
-    """
-    # TODO: implement
-    pass
