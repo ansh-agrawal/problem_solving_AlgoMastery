@@ -16,15 +16,17 @@ Returns:
 """
 
 def rotate_array(nums: list[int], k: int) -> list[int]:
-    """
-    Rotate Array.
-
-    Args:
-        nums (list[int]): List of integers (0-indexed)
-        k (int): Number of steps to rotate
-
-    Returns:
-        list[int]: Rotated array
-    """
-    # TODO: implement
-    pass
+    left=0
+    right=len(nums)-k-1
+    while left<right:
+        nums[left],nums[right] = nums[right],nums[left]
+        left+=1
+        right-=1
+    left=len(nums)-k
+    right=len(nums)-1
+    while left < right:
+        nums[left], nums[right] = nums[right], nums[left]
+        left += 1
+        right -= 1
+    nums.reverse()
+    return  nums
