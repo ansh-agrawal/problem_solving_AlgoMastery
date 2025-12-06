@@ -15,14 +15,14 @@ Returns:
 """
 
 def house_robber(nums: list[int]) -> int:
-    """
-    House Robber.
 
-    Args:
-        nums (list[int]): Amount of money at each house (0-indexed)
+        dp=[0 for _ in range(len(nums))]
+        dp[0]=nums[0]
+        for i in range(1,len(nums)):
+            if i-2>=0:
+                dp[i]=max(dp[i-1],nums[i]+dp[i-2])
+            else:
+                dp[i]=max(dp[i-1],nums[i])
+        return dp[len(dp)-1]
+        
 
-    Returns:
-        int: Maximum amount of money that can be robbed
-    """
-    # TODO: implement
-    pass
