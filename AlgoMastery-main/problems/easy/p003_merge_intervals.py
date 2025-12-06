@@ -14,15 +14,15 @@ Returns:
     list[list[int]]: Merged intervals
 """
 
-def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
-    """
-    Merge Intervals.
-
-    Args:
-        intervals (list[list[int]]): List of intervals (0-indexed)
-
-    Returns:
-        list[list[int]]: Merged intervals
-    """
-    # TODO: implement
-    pass
+def merge_intervals(nums: list[list[int]]) -> list[list[int]]:
+    temp = []
+    for i in range(len(nums)):
+       if len(temp)==0:
+           temp.append(nums[i])
+       elif len(temp)!=0 and (nums[i][0]<=temp[len(temp)-1][1] and nums[i][1]<temp[len(temp)-1][1]):
+           pass
+       elif len(temp)!=0 and nums[i][0]<=temp[len(temp)-1][1]:
+           temp[len(temp)-1][1] = nums[i][1]
+       else:
+           temp.append(nums[i])
+    return temp
