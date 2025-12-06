@@ -15,14 +15,12 @@ Returns:
 """
 
 def longest_increasing_subsequence(nums: list[int]) -> int:
-    """
-    Longest Increasing Subsequence.
 
-    Args:
-        nums (list[int]): List of integers (0-indexed)
-
-    Returns:
-        int: Length of the longest increasing subsequence
-    """
-    # TODO: implement
-    pass
+        dp=[1 for _ in range(len(nums))]
+        for i in range(1,len(nums)):
+            max_indice=-1
+            max_val=0
+            for j in range(0,i):
+                if nums[j]<nums[i]:
+                    dp[i]=max(dp[i],dp[j]+1)
+        return max(dp)
