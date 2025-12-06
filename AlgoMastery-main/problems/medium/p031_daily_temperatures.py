@@ -12,15 +12,22 @@ Example:
 
 from typing import Any, List
 
-def daily_temperatures(temperatures: List[int]) -> List[int]:
-    """
-    Compute the number of days to wait until a warmer temperature.
-
-    Args:
-        temperatures (List[int]): List of daily temperatures
-
-    Returns:
-        List[int]: List of days to wait for a warmer temperature
-    """
-    # TODO: implement
-    pass
+def daily_temperatures(temp: List[int]) -> List[int]:
+    n=len(temp)
+    temp_list=[]
+    st=[]
+    for i in range(n-1,-1,-1):
+        if len(st)==0:
+            temp_list.append(0)
+        elif len(st)!=0 and st[-1][0]<=temp[i]:
+            while len(st)!=0 and st[-1][0] <= temp[i]:
+                st.pop()
+            if len(st)==0:
+                temp_list.append(0)
+            else:
+                temp_list.append(st[-1][1]-i)
+        elif len(st)!=0 and st[-1][0] > temp[i]:
+            temp_list.append(st[-1][1]-i)
+        st.append((temp[i],i))
+    temp_list.reverse()
+    return temp_list
