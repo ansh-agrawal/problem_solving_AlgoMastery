@@ -14,13 +14,11 @@ Returns:
 """
 
 def group_anagrams(strs: list[str]) -> list[list[str]]:
-    """
-    Group Anagrams.
+    dict1={}
+    for i in range(len(strs)):
+        word="".join(sorted(strs[i]))
+        if word not in dict1:
+            dict1[word]=[]
+        dict1[word].append(strs[i])
+    return list(dict1.values())
 
-    Args:
-        strs (list[str]): List of strings (0-indexed)
-
-    Returns:
-        list[list[str]]: Grouped anagrams
-    """
-    pass
