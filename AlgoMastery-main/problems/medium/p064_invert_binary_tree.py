@@ -19,15 +19,17 @@ Returns:
 """
 
 def invert_binary_tree(root: list[int]) -> list[int]:
-    """
-    Invert Binary Tree.
-
-    Args:
-        root (list[Optional[int]]): Binary tree represented as a list (0-indexed, level order, None for missing nodes)
-
-    Returns:
-        list[Optional[int]]: Inverted binary tree as a list (0-indexed, level order, None for missing nodes)
-    """
-    # TODO: implement
-    pass
-
+        q=[]
+        if root is None:
+            return None
+        q.append(root)
+        while len(q)!=0:
+            node=q.pop(0)
+            a=node.left
+            node.left=node.right
+            node.right=a
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+        return root
