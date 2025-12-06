@@ -11,17 +11,22 @@ Example:
 """
 
 from typing import Any, List
-
+from collections import deque
 def sliding_window_maximum(nums: List[int], k: int) -> List[int]:
-    """
-    Find maximum in each sliding window of size k.
-
-    Args:
-        nums (List[int]): Input array of integers
-        k (int): Size of the sliding window
-
-    Returns:
-        List[int]: Maximums of each sliding window
-    """
-    # TODO: implement
-    pass
+        dq=deque()
+        temp_lst=[]
+        for i in range(k):
+            if len(dq)!=0 and nums[i] > dq[-1][0]:
+                while len(dq)!=0 and nums[i] > dq[-1][0]:
+                    dq.pop()
+            dq.append((nums[i],i))
+        temp_lst.append(dq[0][0])
+        for i in range(k,len(nums)):
+            if dq[0][1]==i-k:
+                dq.popleft()
+            if len(dq)!=0 and nums[i] > dq[-1][0]:
+                while len(dq)!=0 and nums[i] > dq[-1][0]:
+                    dq.pop()
+            dq.append((nums[i],i))
+            temp_lst.append(dq[0][0])
+        return temp_lst
