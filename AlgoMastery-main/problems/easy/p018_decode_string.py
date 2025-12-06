@@ -14,13 +14,21 @@ Returns:
 """
 
 def decode_string(s: str) -> str:
-    """
-    Decode String.
+    st=[]
+    ans=""
+    for i in range(len(s)):
+        if s[i]!=']':
+            st.append(s[i])
+        else:
+            ans=""
+            while s[i]!='[':
+                ans+=st.pop()
+            st.pop()
+            ans=ans*(st[len(st)-1]-'0')
+            st.pop()
+            st.append(ans)
+    
+    rev_ans=reversed(ans)
+    return rev_ans
 
-    Args:
-        s (str): The encoded string (0-indexed)
 
-    Returns:
-        str: The decoded string
-    """
-    pass
