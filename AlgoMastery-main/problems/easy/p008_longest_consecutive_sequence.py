@@ -14,13 +14,14 @@ Returns:
 """
 
 def longest_consecutive_sequence(nums: list[int]) -> int:
-    """
-    Longest Consecutive Sequence.
+    dp = [1]*len(nums)
+    nums.sort()
+    for i in range(1,len(nums)):
+        if nums[i]-nums[i-1]==1:
+            dp[i]=dp[i]+dp[i-1]
+    maxx=0
+    for i in range(len(dp)):
+        if dp[i]>maxx:
+            maxx=dp[i]
 
-    Args:
-        nums (list[int]): List of integers (0-indexed)
-
-    Returns:
-        int: Length of the longest consecutive sequence
-    """
-    pass
+    return maxx
