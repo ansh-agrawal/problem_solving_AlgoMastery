@@ -14,14 +14,15 @@ Examples (0-indexed):
 """
 
 def valid_parentheses(s: str) -> bool:
-    """
-    Check if parentheses in the string are valid.
-
-    Args:
-        s (str): Input string containing only '(', ')', '{', '}', '[' and ']'
-
-    Returns:
-        bool: True if the string is valid, False otherwise
-    """
-    # TODO: implement
-    pass
+        st=[]
+        for i in range(len(s)):
+            if len(st)==0 or (s[i]!='}' and s[i]!=']' and  s[i]!=')'):
+                st.append(s[i])
+            elif len(st)!=0 and ((s[i]=='}' and st[-1]!='{') or (s[i]==']' and st[-1]!='[') or (s[i]==')' and st[-1]!='(')):
+                return False
+            else:
+                st.pop()
+                
+        if len(st)==0:
+            return True
+        return False
